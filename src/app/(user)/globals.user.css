@@ -1,0 +1,8 @@
+:root {
+    --background-user: #0c142e;
+  }
+  
+  body {
+      background: var(--background-user);
+  }
+  
