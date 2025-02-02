@@ -4,6 +4,7 @@ import SideBar from "@/components/ui/SideBar";
 import './globals.admin.css';
 import Link from "next/link";
 import { FaEye } from "react-icons/fa6";
+import { Suspense } from "react";
 
 
 export const metadata: Metadata = {
@@ -30,7 +31,9 @@ export default function RootAdminLayout({
               </div>
             </header>
             <section className="m-9">
-              {children}
+              <Suspense fallback={<div className="text-center">loading...</div>}>
+                {children}
+              </Suspense>
             </section>
           </main>
         </div>

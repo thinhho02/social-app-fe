@@ -1,11 +1,7 @@
-import { Creator } from "@/types/creator";
+import { CreatorResponse, CreatorsResponse } from "@/types/creator";
 import API from "./httpConfig";
 
 
-interface CreatorsResponse {
-    message: string;
-    data: Creator[];
-}
 
 export const getCreators = async (url: string): Promise<CreatorsResponse> => {
     try {
@@ -19,11 +15,6 @@ export const getCreators = async (url: string): Promise<CreatorsResponse> => {
         throw new Error((error as Error).message);
     }
 };
-
-interface CreatorResponse {
-    message: string;
-    data: Creator
-}
 
 export const getCreatorBySlug = async (url: string, param: string): Promise<CreatorResponse> => {
     try {

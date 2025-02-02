@@ -7,3 +7,13 @@ export interface Category {
     creators: Creator[];
     mediaUrl: string;
 }
+
+export interface CategoriesResponse {
+    message: string;
+    data: Category[];
+}
+
+export interface CategoryResponse {
+    message: string;
+    data: Category
+}

@@ -1,9 +1,6 @@
-import { Category } from "@/types/category";
+import { CategoriesResponse, CategoryResponse } from "@/types/category";
 
-interface CategoriesResponse {
-    message: string;
-    data: Category[];
-}
+
 export const getCategories = async (url: string): Promise<CategoriesResponse> => {
     try {
         const path = process.env.NEXT_PUBLIC_ORIGIN_PATH_BACKEND + url
@@ -17,10 +14,6 @@ export const getCategories = async (url: string): Promise<CategoriesResponse> =>
     }
 };
 
-interface CategoryResponse {
-    message: string;
-    data: Category
-}
 export const getCategoryBySlug = async (url: string, param: string): Promise<CategoryResponse> => {
     try {
         const path = process.env.NEXT_PUBLIC_ORIGIN_PATH_BACKEND + url + param

@@ -1,11 +1,7 @@
-import { Tag } from "@/types/tag";
+import { TagResponse, TagsResponse } from "@/types/tag";
 import API from "./httpConfig";
 
 
-interface TagsResponse {
-    message: string;
-    data: Tag[];
-}
 export const getTags = async (url: string): Promise<TagsResponse> => {
     try {
         const path = process.env.NEXT_PUBLIC_ORIGIN_PATH_BACKEND + url
@@ -19,10 +15,6 @@ export const getTags = async (url: string): Promise<TagsResponse> => {
     }
 }
 
-interface TagResponse {
-    message: string;
-    data: Tag
-}
 export const getTagBySlug = async (url: string, param: string): Promise<TagResponse> => {
     try {
         const path = process.env.NEXT_PUBLIC_ORIGIN_PATH_BACKEND + url + param

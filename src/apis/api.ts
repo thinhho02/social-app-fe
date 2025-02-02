@@ -2,7 +2,7 @@ import API from "./httpConfig";
 
 
 
-export const create = async (url: string, data: FormData) => {
+export const create = async (url: string, data?: FormData) => {
     try {
         const res = await API.post(url, data)
         return { success: true }
@@ -12,7 +12,7 @@ export const create = async (url: string, data: FormData) => {
 }
 
 
-export const update = async (url: string, data: FormData) => {
+export const update = async (url: string, data?: FormData) => {
     try {
         const res = await API.put(url, data)
         return { success: true, data: res.data }

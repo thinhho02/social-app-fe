@@ -13,6 +13,16 @@ export interface Creator {
     status: string;
 }
 
+export interface CreatorsResponse {
+    message: string;
+    data: Creator[];
+}
+
+export interface CreatorResponse {
+    message: string;
+    data: Creator
+}
+
 export interface ReactTag {
     id: string;
     className: string;

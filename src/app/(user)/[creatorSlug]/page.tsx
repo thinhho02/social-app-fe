@@ -8,6 +8,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 import { FaEye, FaPlay } from 'react-icons/fa6'
+import IncrementViewsCreator from './IncrementViewsCreator'
 
 export async function generateStaticParams() {
     const creators = await getCreators('creator')
@@ -17,20 +18,8 @@ export async function generateStaticParams() {
     }))
 }
 
-async function logPageVisit(creatorSlug: string) {
-    try {
-        const res = await incrementViewsCreator('creator/increment-views/', creatorSlug)
-        if (!res.message) {
-            throw new Error('Failed to log page visit')
-        }
-    } catch (error) {
-        throw new Error('Something wrong')
-    }
-}
-
 const CreatorPage = async ({ params }: { params: Promise<{ creatorSlug: string }> }) => {
     const { creatorSlug } = await params
-    await logPageVisit(creatorSlug)
     const categories = await getCategories('category')
     const creator = await getCreatorBySlug('creator/slug/', creatorSlug)
     const categoryByID = await getCategoryByID('category/', creator.data.category._id)
@@ -41,10 +30,9 @@ const CreatorPage = async ({ params }: { params: Promise<{ creatorSlug: string }
     ]
     return (
         <div className="bg-gray-900 text-white min-h-screen p-6">
-
+            <IncrementViewsCreator creatorSlug={creatorSlug} />
             <Breadcrumb items={breadCrumb} />
 
-            {/* Video Section */}
             <div className="flex flex-col gap-5 mt-7">
                 <div className="">
                     <button className="relative rounded-lg w-full h-[500px] bg-black">
@@ -90,7 +78,6 @@ const CreatorPage = async ({ params }: { params: Promise<{ creatorSlug: string }
                 </div>
             </div>
 
-            {/* More Section */}
             <div className="mt-10">
                 <h3 className="text-lg font-semibold mb-4">More:</h3>
                 <div className="grid grid-cols-4 gap-4">

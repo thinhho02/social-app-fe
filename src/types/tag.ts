@@ -7,3 +7,13 @@ export interface Tag {
     views: number;
     slug: string
 }
+
+export interface TagsResponse {
+    message: string;
+    data: Tag[];
+}
+
+export interface TagResponse {
+    message: string;
+    data: Tag
+}
