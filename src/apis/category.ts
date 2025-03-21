@@ -3,7 +3,7 @@ import { CategoriesResponse, CategoryResponse } from "@/types/category";
 
 export const getCategories = async (url: string, limit: number = 0, status: string = ''): Promise<CategoriesResponse> => {
     try {
-        const path = process.env.NEXT_PUBLIC_ORIGIN_PATH_BACKEND + url + `?limit=${limit}&status=${status}`
+        const path = process.env.DEV_ORIGIN_PATH_BACKEND + url + `?limit=${limit}&status=${status}`
         const res = await fetch(path, { next: { tags: ['category'], revalidate: 3600 } });
         const data: CategoriesResponse = await res.json();
         return data;
@@ -14,7 +14,7 @@ export const getCategories = async (url: string, limit: number = 0, status: stri
 
 export const getCategoryBySlug = async (url: string, param: string, status: string = ''): Promise<CategoryResponse> => {
     try {
-        const path = process.env.NEXT_PUBLIC_ORIGIN_PATH_BACKEND + url + param + `?status=${status}`
+        const path = process.env.DEV_ORIGIN_PATH_BACKEND + url + param + `?status=${status}`
 
         const res = await fetch(path, { next: { tags: ['category'], revalidate: 3600 } });
 
@@ -27,7 +27,7 @@ export const getCategoryBySlug = async (url: string, param: string, status: stri
 
 export const getCategoryByID = async (url: string, param: string, status: string = ''): Promise<CategoryResponse> => {
     try {
-        const path = process.env.NEXT_PUBLIC_ORIGIN_PATH_BACKEND + url + param + `?status=${status}`
+        const path = process.env.DEV_ORIGIN_PATH_BACKEND + url + param + `?status=${status}`
 
         const res = await fetch(path, { next: { tags: ['category'] } });
 
@@ -40,7 +40,7 @@ export const getCategoryByID = async (url: string, param: string, status: string
 
 export const searchByNameCategory = async (url: string, query: string, status: string = ''): Promise<CategoriesResponse> => {
     try {
-        const path = process.env.NEXT_PUBLIC_ORIGIN_PATH_BACKEND + url + `?name=${query}&status=${status}`
+        const path = process.env.DEV_ORIGIN_PATH_BACKEND + url + `?name=${query}&status=${status}`
 
         const res = await fetch(path, { next: { tags: ['category'] } });
 
