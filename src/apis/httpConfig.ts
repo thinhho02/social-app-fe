@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API = axios.create({ baseURL: process.env.DEV_ORIGIN_PATH_BACKEND, withCredentials: true });
+const API = axios.create({ baseURL: process.env.ORIGIN_PATH_BACKEND, withCredentials: true });
 
 API.interceptors.response.use(
     (response) => response,
