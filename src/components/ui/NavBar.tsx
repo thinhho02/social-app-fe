@@ -1,10 +1,9 @@
-
-
-import React from 'react'
+import React, { Suspense } from 'react'
 import Image from 'next/image'
-import { FaBars, FaSistrix } from 'react-icons/fa6'
-import LeftMenu from './LeftMenu'
 import Link from 'next/link'
+import { FaBars, FaSistrix } from 'react-icons/fa6'
+
+import LeftMenu from './LeftMenu'
 
 const NavBar = () => {
 
@@ -12,10 +11,10 @@ const NavBar = () => {
         <nav className='fixed bg-[--background] w-full z-20 top-0 start-0 border-b border-gray-700'>
             <div className='relative max-w-7xl mx-auto'>
                 <div className='flex items-center justify-between pt-1'>
-                    <LeftMenu />
-                    {/* <div className="absolute top-full -left-12 bg-white divide-y divide-gray-100 rounded-lg shadow-sm dark:bg-gray-700 w-44 h-36" id="navbar-category">
-                        
-                    </div> */}
+                    <Suspense fallback={<FaBars />}>
+                        <LeftMenu />
+                    </Suspense>
+
                     <Link href={'/'}>
                         <Image src='/hummingbird-309492.svg' alt="" width={50} height={50} priority />
                     </Link>

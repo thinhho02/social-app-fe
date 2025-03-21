@@ -1,9 +1,10 @@
 'use client'
 
+import React, { useEffect, useState } from "react";
+import Link from "next/link";
+
 import { getHotTag } from "@/apis/tag";
 import { Tag } from "@/types/tag";
-import Link from "next/link";
-import React, { useEffect, useState } from "react";
 
 const TopTags = () => {
   const [tags, setTags] = useState<Tag[]>([])

@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
+
 import NavBar from "@/components/ui/NavBar";
 
 import './globals.user.css'
-import { Suspense } from "react";
 
 export const metadata: Metadata = {
     title: "Create Next App",
@@ -17,10 +17,8 @@ export default function RootUserLayout({
     return (
         <>
             <NavBar />
-            <main className="min-h-screen py-14 max-w-screen-2xl mx-auto">
-                <Suspense fallback={<div className="text-center">loading...</div>}>
-                    {children}
-                </Suspense>
+            <main className="min-h-screen py-14 container mx-auto">
+                {children}
             </main>
         </>
     );
