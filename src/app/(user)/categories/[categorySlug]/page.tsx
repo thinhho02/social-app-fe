@@ -1,7 +1,11 @@
+import React from 'react'
+
 import { getCategories, getCategoryBySlug } from '@/apis/category'
+
 import Breadcrumb from '@/components/ui/BreadCrumb'
 import CardCreator from '@/components/ui/CardCreator'
-import React from 'react'
+import { notFound } from 'next/navigation'
+
 
 export async function generateStaticParams() {
     const categories = await getCategories('category')
@@ -13,7 +17,10 @@ export async function generateStaticParams() {
 
 const CategoryPage = async ({ params }: { params: Promise<{ categorySlug: string }> }) => {
     const { categorySlug } = await params
-    const category = await getCategoryBySlug('category/slug/', categorySlug)
+    const category = await getCategoryBySlug('category/slug/', categorySlug, 'active')
+    if (!category || !category.data) {
+        return notFound();
+    }
     const breadCrumb = [
         { label: "Categories", href: "/categories" },
         { label: category.data.name }
@@ -24,10 +31,10 @@ const CategoryPage = async ({ params }: { params: Promise<{ categorySlug: string
             <div className="my-4">
                 <p>List all creators</p>
             </div>
-            <div className="grid grid-cols-4 gap-4">
-                {category.data.creators.map((creator) => {
-                    if (creator.status === 'active') return (<CardCreator key={creator._id} creator={creator} name={category.data.name} />)
-                })}
+            <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
+                {category.data.creators.map((creator) => 
+                    (<CardCreator key={creator._id} creator={creator} name={category.data.name} />)
+                )}
             </div>
         </div>
     )

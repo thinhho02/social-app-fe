@@ -1,11 +1,13 @@
 'use client'
 
-import { getCategories, searchByNameCategory } from "@/apis/category";
-import { Category } from "@/types/category";
+import React, { useEffect, useMemo, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useEffect, useMemo, useState } from "react";
 import { FaBars, FaCaretRight, FaChevronRight, FaList, FaSistrix, FaUpRightFromSquare, FaXmark } from "react-icons/fa6";
+
+import { getCategories, searchByNameCategory } from "@/apis/category";
+
+import { Category } from "@/types/category";
 
 const LeftMenu = () => {
     const [categories, setCategories] = useState<Category[]>([]);
@@ -15,11 +17,11 @@ const LeftMenu = () => {
 
     useEffect(() => {
         async function setDataCategories() {
-            const categories = await getCategories('category?limit=3')
+            const categories = await getCategories('category', 3)
             setCategories(categories.data)
         }
         setDataCategories()
-    },[])
+    }, [])
 
     const debounce = (func: (...args: any[]) => void, delay: number) => {
         let timer: NodeJS.Timeout;
@@ -112,7 +114,7 @@ const LeftMenu = () => {
                     <ul className="text-sm">
                         {categories?.map((category) => (
                             <li key={category._id} className="py-4 px-2 border-b border-gray-700">
-                                <Link href={`/categories/${category.slug}`} className="flex items-center gap-3 hover:text-orange-500">
+                                <Link href={`/categories/${category.slug}`} className="flex items-center gap-3 hover:text-orange-500" onClick={closeMenu}>
                                     <FaCaretRight />
                                     <span>{category.name}</span>
                                 </Link>

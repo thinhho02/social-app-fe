@@ -1,8 +1,8 @@
 :root {
-    --background-user: #0c142e;
+    --background-color: #111827;
   }
   
   body {
-      background: var(--background-user);
+      background: var(--background-color);
   }
   

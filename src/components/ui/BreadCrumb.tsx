@@ -25,9 +25,7 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({ items , isAdmin }) => {
                     </Link>
                 </li>
 
-                {/* Render each breadcrumb item dynamically */}
                 {items.map((item, index) => {
-                    // If it's the last item (current page), don't show a link, only text
                     const isLast = index === items.length - 1;
 
                     return (

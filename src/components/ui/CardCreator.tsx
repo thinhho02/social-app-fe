@@ -1,8 +1,9 @@
-import { Creator } from '@/types/creator';
+import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link';
-import React from 'react'
-import { FaEye } from 'react-icons/fa6'
+import { FaComment, FaEye, FaHand } from 'react-icons/fa6'
+
+import { Creator } from '@/types/creator';
 
 
 
@@ -12,19 +13,32 @@ const CardCreator = ({ aside, creator, name }: {
     name?: string;
 }) => {
     return (
-        <Link href={`/${creator.slug}`}>
-            <div className={`${aside ? 'h-36' : 'h-52'} relative rounded-lg overflow-hidden shadow-lg  border-2 border-gray-500 hover:border-orange-600 transition-colors duration-300 ease-in-out`}>
-                <Image src={creator.mediaUrl} alt="Category 1" fill />
-                <span className={`absolute top-2 left-2 bg-orange-600 text-white text-xs font-bold ${name || aside ? 'px-2 py-1' : ''} rounded`}>{aside ? creator.category.name : name}</span>
-                <div className="absolute bottom-1 left-1/2 -translate-x-1/2 flex items-center justify-center gap-1 text-xs mt-2">
+        <div>
+            <div className={`${aside ? 'h-36' : 'h-52'} flex flex-col relative rounded-lg overflow-hidden shadow-lg border-2 border-gray-500`}>
+                <span className={`absolute z-10 top-2 left-2 bg-orange-600 text-white text-xs font-bold ${name || aside ? 'px-2 py-1' : ''} rounded`}>{aside ? creator.category.name : name}</span>
+                <Link href={`/${creator.slug}`} className='relative h-full hover:border-2 rounded-lg hover:border-orange-600 transition-colors duration-300 ease-in-out'>
+                    <Image src={creator.mediaUrl} className='rounded-lg' alt="Category 1" fill loading="lazy" />
+                </Link>
+
+                {!aside && <div className='flex items-center justify-between border-t text-sm w-full p-2'>
+                    <button className='flex items-center justify-between gap-2 mx-auto px-4 py-1 rounded-lg hover:bg-gray-700 '>
+                        <FaHand />
+                        <p>Like</p>
+                    </button>
+                    <button className='flex items-center justify-between gap-2 mx-auto px-4 py-1 rounded-lg hover:bg-gray-700 '>
+                        <FaComment />
+                        <p>Comment</p>
+                    </button>
+                </div>}
+            </div>
+            <div className="flex items-center justify-between py-2">
+                <p className="text-sm text-white truncate pr-2">{creator.name}</p>
+                <div className="flex items-center justify-center gap-1 text-xs">
                     <FaEye />
                     <span className="">{creator.views}</span>
                 </div>
             </div>
-            <div className="py-4">
-                <p className="text-sm text-white">{creator.name}</p>
-            </div>
-        </Link>
+        </div>
     )
 }
 
