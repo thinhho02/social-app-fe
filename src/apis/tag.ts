@@ -4,7 +4,7 @@ import API from "./httpConfig";
 
 export const getTags = async (url: string, status: string = ''): Promise<TagsResponse> => {
     try {
-        const path = process.env.ORIGIN_PATH_BACKEND + url + `?status=${status}`
+        const path = process.env.NEXT_PUBLIC_ORIGIN_PATH_BACKEND + url + `?status=${status}`
 
         const res = await fetch(path, { next: { tags: ['tag'], revalidate: 3600 } });
 
@@ -17,7 +17,7 @@ export const getTags = async (url: string, status: string = ''): Promise<TagsRes
 
 export const getTagBySlug = async (url: string, param: string, status: string = ''): Promise<TagResponse> => {
     try {
-        const path = process.env.ORIGIN_PATH_BACKEND + url + param + `?status=${status}`
+        const path = process.env.NEXT_PUBLIC_ORIGIN_PATH_BACKEND + url + param + `?status=${status}`
 
         const res = await fetch(path, { next: { tags: ['tag'], revalidate: 3600 } });
 
@@ -30,7 +30,7 @@ export const getTagBySlug = async (url: string, param: string, status: string = 
 
 export const getHotTag = async (url: string): Promise<TagsResponse> => {
     try {
-        const path = process.env.ORIGIN_PATH_BACKEND + url
+        const path = process.env.NEXT_PUBLIC_ORIGIN_PATH_BACKEND + url
 
         const res = await fetch(path, { next: { tags: ['tag'], revalidate: 3600 } });
 

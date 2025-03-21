@@ -16,7 +16,7 @@ const WrapperCompClient = dynamic(() => import('@/components/ui/WrapperCompClien
 
 export async function generateStaticParams() {
     const creators = await getCreators('creator')
-
+    console.log(creators)
     return creators.data.map((creator) => ({
         creatorSlug: creator.slug,
     }))
